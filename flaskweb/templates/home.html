@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
+{% extends "layout.html" %}
+{% block content %}
 	<h1>Hello, World! What it do tho?</h1>
 	<br>
-	<h4>Big old titties</h4>
 	<a href="about">Link to about</a>
-</body>
-</html>
+	{% for post in posts %}
+		<h1>{{ post.title }}</h1>
+		<p>By {{ post.author }} on {{ post.date }}</p>
+		<p>{{ post.content }}</p>
+	{% endfor %}
+{% endblock content %}
