@@ -1,7 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
 	<h2>Welcome to my about page !!!</h2>
-	<a href="home">Link to home</a>
 	{% for post in posts %}
 		<h1>{{ post.title }}</h1>
 		<p>By {{ post.author }} on {{ post.date }}</p>
