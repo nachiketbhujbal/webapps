@@ -1,19 +1,24 @@
 from flask import Flask, render_template, url_for, flash, redirect
+from flask_sqlalchemy import SQLAlchemy
 from forms import RegistrationFrom, LoginForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'bc643a510f94191f5e01e52938fbb866'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+
+db = SQLAlchemy(app)
+
+from models import User, Post
 
 posts = [
-
-    {
+            {
         'author': 'Nachiket Bhujbal',
         'title': 'Blog Post 1',
         'content': 'First post content body',
         'date': 'March 31, 2020'
         },
-    {
-        'author': 'Nachiket Bhujbal',
+            {
+        'author': 'Dr. Evil',
         'title': 'HAPPY APRIL FOOLS',
         'content': 'April fools day! Hahah',
         'date': 'April 1, 2020'
@@ -38,6 +43,7 @@ def register():
     if form.validate_on_submit():
         flash(f'Account created for {form.username.data}!', 'success')
         return redirect(url_for('home'))
+
     return render_template('register.html', title='Register', form=form)
 
 
@@ -50,6 +56,7 @@ def login():
             return redirect(url_for('home'))
         else:
             flash('Log in unsuccessful!', 'danger')
+
     return render_template('login.html', title='Login', form=form)
 
 
