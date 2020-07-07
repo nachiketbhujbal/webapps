@@ -1,4 +1,8 @@
-from models import User, Post
+from flask import render_template, url_for, flash, redirect
+
+from flaskblog import app
+from flaskblog.forms import RegistrationFrom, LoginForm
+from flaskblog.models import User, Post
 
 posts = [
             {
@@ -16,8 +20,8 @@ posts = [
     ]
 
 
-@app.route('/')
-@app.route('/home')
+@app.route("/")
+@app.route("/home")
 def home():
     return render_template('home.html', posts=posts)
 
